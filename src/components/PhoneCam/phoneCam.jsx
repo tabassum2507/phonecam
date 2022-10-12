@@ -4,27 +4,18 @@ import 'react-html5-camera-photo/build/css/index.css';
 
 import ImagePreview from './imagePreview'; 
 function PhoneCam (props) {
-  const [dataUri, setDataUri] = useState('');
-
-  function handleTakePhotoAnimationDone (dataUri) {
+  function handleTakePhoto (dataUri) {
+    // Do stuff with the photo...
     console.log('takePhoto');
-    setDataUri(dataUri);
   }
 
-  const isFullscreen = false;
   return (
-    <div>
-      {
-        (dataUri)
-          ? <ImagePreview dataUri={dataUri}
-            isFullscreen={isFullscreen}
-          />
-          : <Camera onTakePhotoAnimationDone = {handleTakePhotoAnimationDone}
-            isFullscreen={isFullscreen}
-          />
-      }
-    </div>
+    <Camera
+      onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
+    />
   );
 }
+
+
 
 export default PhoneCam
